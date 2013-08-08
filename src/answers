@@ -1,0 +1,114 @@
+Problem 1
+
+public static int sumMultiplesUpTo(int mult, int max) {
+	float equationCount = (max/mult) / 2.0;
+	int maxMult = (max/mult) * mult;
+	return (int) (mult + maxMult) * equationCount;
+}
+
+public static int sumManyMultiplesUpTo(int mult1, int mult2, int max) {
+	int sum = sumMultiplesUpTo(mult1, max);
+	sum+= sumMultiplesUpTo(mult2, max);
+	sum-= sumMultiplesUpTo(mult1*mult2, max);
+	return sum;
+}
+
+
+
+Problem 2
+
+public static void printFibsUpTo(int max) {
+    int a = 0;
+    int b = 1;
+    while (b<max) {
+        int temp = b;
+        b = b+a;
+        a = b;
+        System.out.println(b);
+    }
+}
+public static void sumEvenFibsUpTo(int max) {
+    int a = 0;
+    int b = 1;
+    int sum = 0;
+    while (b<max) {
+        int temp = b;
+        b = b+a;
+        a = b;
+        if (b%2==0) {
+            sum+=b;
+        }
+    }
+}
+
+
+
+Problem 3
+public static long primeFactorHelper(long num, long current) {
+        long p = 1;
+        if (num%current==0) {
+            System.out.print(current+" ");
+            p = current;
+            num = num/current;
+        }
+        else
+            current++;
+
+        if (current>=num)
+            return num/p;
+        else
+            return Math.max(primeFactorHelper(num, current), p);
+}
+
+
+
+Problem 4
+public static long largestPalindromeProduct(int digits)
+{
+    String str = "1";
+    for (int i = 1; i<digits; i++) {
+        str += "0";
+    }
+    long min = Long.parseLong(str);
+    long max = min*10-1;
+    min = min * min;
+    max = max * max;
+
+    while (min<=max) {
+        if (isPalindrome(max))
+            if (isDigitDivisible(digits, max);
+                return min;
+        max--;
+    }
+    return -1;
+}
+
+public static boolean isPalindrome(long num) {
+    String numStr = ""+num;
+    for (int i = 0 ; i<=numStr.length()-i ; i++) {
+        if (numStr.charAt(i)!=numStr.charAt(numStr.length()-1-i)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+public static boolean isDigitDivisible(int digits, int num) {
+    String str = "1";
+    for (int i = 1; i<digits; i++) {
+        str += "0";
+    }
+
+    long i = Long.parseLong(str);
+    long max = i*10;
+    while (i<max) {
+        if (num%i == 0) {
+            long j = num/i;
+            if ((""+j).length()==digits)
+                return true;
+        }
+        i++;
+    }
+    return false;
+}
+
